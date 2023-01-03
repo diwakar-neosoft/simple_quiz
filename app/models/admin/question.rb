@@ -1,7 +1,11 @@
-class Admin::Question < ApplicationRecord
-  self.table_name = 'questions'
-  belongs_to :subject
+# frozen_string_literal: true
 
-  enum :inputType, ['yes/no', 'multiple choice', 'list', 'descriptive']
-  store :optionValues, accessors: [ :option1, :option2, :option3, :option4 ], coder: JSON
+module Admin
+  class Question < ApplicationRecord
+    self.table_name = 'questions'
+    belongs_to :subject
+
+    enum :inputType, ['yes/no', 'multiple choice', 'list', 'descriptive']
+    store :optionValues, accessors: %i[option1 option2 option3 option4], coder: JSON
+  end
 end

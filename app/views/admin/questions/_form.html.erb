@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :subject_id, style: "display: block" %>
-    <%= form.text_field :subject_id %>
+    <%= form.select :subject_id, get_all_subjects %>
   </div>
 
   <div>
