@@ -18,12 +18,7 @@
 
   <div>
     <%= form.label :inputType, style: "display: block" %>
-    <%= form.select :inputType, Admin::Question.inputTypes %>
-  </div>
-
-  <div>
-    <%= form.label :optionValues, style: "display: block" %>
-    <%= form.text_field :optionValues %>
+    <%= form.select :inputType, input_type_options %>
   </div>
 
   <div>

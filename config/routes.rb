@@ -6,8 +6,5 @@ Rails.application.routes.draw do
     resources :subjects
   end
   get :admin, to: 'admin/subjects#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'admin/subjects#index'
 end

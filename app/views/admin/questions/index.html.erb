@@ -4,10 +4,12 @@
 
 <div id="admin_questions">
   <% @admin_questions.each do |admin_question| %>
-    <%= render admin_question %>
-    <p>
-      <%= link_to "Show this question", admin_question %>
-    </p>
+    <div class='card'>
+      <%= render admin_question %>
+      <p>
+        <%= link_to "Show this question", admin_question %>
+      </p>
+    </div>
   <% end %>
 </div>
 

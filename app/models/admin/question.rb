@@ -5,7 +5,7 @@ module Admin
     self.table_name = 'questions'
     belongs_to :subject
 
-    enum :inputType, ['yes/no', 'multiple choice', 'list', 'descriptive']
-    store :optionValues, accessors: %i[option1 option2 option3 option4], coder: JSON
+    enum :inputType, [ "true/false", "multipleChoice", "list", "descriptive"]
+    store :optionValues, accessors: %i[option1 option2 option3 option4 answer], coder: JSON
   end
 end
