@@ -3,14 +3,14 @@
 <h1>Questions</h1>
 
 <div id="admin_questions">
-  <% @admin_questions.each do |admin_question| %>
-    <div class='card'>
+  <div class='row'>
+    <% @admin_questions.each do |admin_question| %>
       <%= render admin_question %>
       <p>
         <%= link_to "Show this question", admin_question %>
       </p>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New question", new_admin_question_path %>
+<%= link_to "New question", new_admin_question_path, class: 'btn btn-primary mt-2' %>

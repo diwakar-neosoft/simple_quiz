@@ -11,53 +11,59 @@
     </div>
   <% end %>
 
-  <div>
+  <div class='form-group'>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
+    <%= form.text_area :title, class: 'form-control' %>
   </div>
 
-  <div>
+  <div class='form-group'>
     <%= form.label :inputType, 'Input Type: ', style: "display: block" %>
-    <%= form.select :inputType, input_type_options, :include_blank => 'Select Question Type' %>
+    <%= form.select :inputType, input_type_options, :include_blank => 'Select Question Type', class: 'form-control' %>
   </div>
 
   <div class='hidden' id='optionBlock'>
-    <div>
+    <div class='form-group'>
       <%= form.label :option1, style: "display: block" %>
-      <%= form.text_field :option1 %>
+      <%= form.text_field :option1, class: 'form-control' %>
     </div>
 
-    <div>
+    <div class='form-group'>
       <%= form.label :option2, style: "display: block" %>
-      <%= form.text_field :option2 %>
+      <%= form.text_field :option2, class: 'form-control' %>
     </div>
 
-    <div>
+    <div class='form-group'>
       <%= form.label :option3, style: "display: block" %>
-      <%= form.text_field :option3 %>
+      <%= form.text_field :option3, class: 'form-control' %>
     </div>
 
-    <div>
+    <div class='form-group'>
       <%= form.label :option4, style: "display: block" %>
-      <%= form.text_field :option4 %>
+      <%= form.text_field :option4, class: 'form-control' %>
     </div>
   </div>
 
   <div class='hidden' id='answerBlock'>
-    <div>
+    <div class='form-group'>
       <%= form.label :answer, style: "display: block" %>
-      <%= form.text_field :answer %>
+      <%= form.text_field :answer, class: 'form-control' %>
     </div>
   </div>
-  <div>
+  <div class='form-group'>
     <%= form.label :subject_id, style: "display: block" %>
-    <%= form.select :subject_id, get_all_subjects %>
+    <%= form.select :subject_id, get_all_subjects, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class='form-group'>
+    <%= form.submit class: 'btn btn-success' %>
   </div>
 <% end %>
+
+
+
+
+
+
 <script type="text/javascript">
   function fieldCondition(inputType){
     if (inputType === 'true/false'){

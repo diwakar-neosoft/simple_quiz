@@ -3,14 +3,14 @@
 <h1>Subjects</h1>
 
 <div id="admin_subjects">
-  <% @admin_subjects.each do |admin_subject| %>
-    <div class='card my-2'>
-      <%= render admin_subject %>
-      <p>
+  <div class='row'>
+    <% @admin_subjects.each do |admin_subject| %>
+      <div class='col-4 card mx-2 my-2'>
+        <%= render admin_subject %>
         <%= link_to "Show this subject", admin_subject %>
-      </p>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New subject", new_admin_subject_path %>
+<%= link_to "New subject", new_admin_subject_path, class: 'btn btn-primary mt-2' %>

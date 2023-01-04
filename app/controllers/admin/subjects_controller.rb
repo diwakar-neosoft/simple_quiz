@@ -10,7 +10,9 @@ module Admin
     end
 
     # GET /admin/subjects/1 or /admin/subjects/1.json
-    def show; end
+    def show
+      @admin_questions = @admin_subject.questions
+    end
 
     # GET /admin/subjects/new
     def new

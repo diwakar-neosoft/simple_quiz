@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @admin_subject %>
+<%= render @admin_questions %>
 
 <div>
   <%= link_to "Edit this subject", edit_admin_subject_path(@admin_subject) %> |
   <%= link_to "Back to subjects", admin_subjects_path %>
 
-  <%= button_to "Destroy this subject", @admin_subject, method: :delete %>
+  <%= button_to "Destroy this subject", @admin_subject, method: :delete, class: 'btn btn-danger mt-3' %>
 </div>
