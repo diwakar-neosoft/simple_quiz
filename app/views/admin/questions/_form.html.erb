@@ -17,15 +17,38 @@
   </div>
 
   <div>
-    <%= form.label :inputType, style: "display: block" %>
-    <%= form.select :inputType, input_type_options %>
+    <%= form.label :inputType, 'Input Type: ', style: "display: block" %>
+    <%= form.select :inputType, input_type_options, :include_blank => 'Select Question Type' %>
   </div>
 
-  <div>
-    <%= form.label :answer, style: "display: block" %>
-    <%= form.text_field :answer %>
+  <div class='hidden' id='optionBlock'>
+    <div>
+      <%= form.label :option1, style: "display: block" %>
+      <%= form.text_field :option1 %>
+    </div>
+
+    <div>
+      <%= form.label :option2, style: "display: block" %>
+      <%= form.text_field :option2 %>
+    </div>
+
+    <div>
+      <%= form.label :option3, style: "display: block" %>
+      <%= form.text_field :option3 %>
+    </div>
+
+    <div>
+      <%= form.label :option4, style: "display: block" %>
+      <%= form.text_field :option4 %>
+    </div>
   </div>
 
+  <div class='hidden' id='answerBlock'>
+    <div>
+      <%= form.label :answer, style: "display: block" %>
+      <%= form.text_field :answer %>
+    </div>
+  </div>
   <div>
     <%= form.label :subject_id, style: "display: block" %>
     <%= form.select :subject_id, get_all_subjects %>
@@ -35,3 +58,23 @@
     <%= form.submit %>
   </div>
 <% end %>
+<script>
+  $('#admin_question_inputType').change(function(event){
+    const inputType = $(this).val();
+
+    if (inputType === 'true/false'){
+      $('#answerBlock').removeClass("hidden");
+      $('#optionBlock').addClass("hidden");
+    }
+    else if (inputType === 'multipleChoice' || inputType === 'list'){
+      $('#answerBlock').removeClass("hidden");
+      $('#optionBlock').removeClass("hidden");
+    }
+    else{
+      $('#answerBlock').addClass("hidden");
+      $('#optionBlock').addClass("hidden");
+    }
+
+    console.log(inputType)
+  });
+</script>

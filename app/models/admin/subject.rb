@@ -3,5 +3,7 @@
 module Admin
   class Subject < ApplicationRecord
     self.table_name = 'subjects'
+
+    has_many :questions
   end
 end

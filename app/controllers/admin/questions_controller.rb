@@ -67,7 +67,13 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def admin_question_params
-      params.require(:admin_question).permit(:title, :inputType, :answer, :subject_id)
+      if params[:admin_question][:inputType] == 'true/false'
+        params.require(:admin_question).permit(:title, :inputType, :answer, :subject_id)
+      elsif params[:admin_question][:inputType] == 'multipleChoice' && params[:admin_question][:inputType] == 'list'
+        params.require(:admin_question).permit(:title, :inputType, :option1, :option2, :option3, :option4, :answer, :subject_id)
+      else
+        params.require(:admin_question).permit(:title, :inputType, :subject_id)
+      end
     end
   end
 end
