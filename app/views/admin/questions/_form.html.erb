@@ -58,10 +58,8 @@
     <%= form.submit %>
   </div>
 <% end %>
-<script>
-  $('#admin_question_inputType').change(function(event){
-    const inputType = $(this).val();
-
+<script type="text/javascript">
+  function fieldCondition(inputType){
     if (inputType === 'true/false'){
       $('#answerBlock').removeClass("hidden");
       $('#optionBlock').addClass("hidden");
@@ -74,7 +72,14 @@
       $('#answerBlock').addClass("hidden");
       $('#optionBlock').addClass("hidden");
     }
-
-    console.log(inputType)
+  }
+  var setField = function() {
+    const inputType = $(this).val();
+    fieldCondition(inputType)
+  }
+  $( document ).ready(function() {
+    const inputType = $('#admin_question_inputType')[0].value;
+    fieldCondition(inputType);
   });
+  $('#admin_question_inputType').change(setField);
 </script>

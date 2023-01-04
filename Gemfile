@@ -67,3 +67,5 @@ group :development do
 end
 
 gem 'cssbundling-rails', '~> 1.1'
+
+gem 'byebug', '~> 11.1', group: :development
