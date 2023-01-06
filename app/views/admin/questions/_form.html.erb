@@ -60,18 +60,26 @@
 <% end %>
 
 <script type="text/javascript">
+var place = {
+  "true/false" : "true/false",
+  "multipleChoice": "select from option",
+  "list": "select from option"
+}
   function fieldCondition(inputType){
+    $('#admin_question_answer').attr("placeholder", place[inputType]);
+    let removeClassHidden = (id) => $(`#${id}`).removeClass("hidden");
+    let addClassHidden = (id) => $(`#${id}`).addClass("hidden");
     if (inputType === 'true/false'){
-      $('#answerBlock').removeClass("hidden");
-      $('#optionBlock').addClass("hidden");
+      removeClassHidden('answerBlock')
+      addClassHidden('optionBlock');
     }
     else if (inputType === 'multipleChoice' || inputType === 'list'){
-      $('#answerBlock').removeClass("hidden");
-      $('#optionBlock').removeClass("hidden");
+      removeClassHidden('answerBlock')
+      removeClassHidden('optionBlock')
     }
     else{
-      $('#answerBlock').addClass("hidden");
-      $('#optionBlock').addClass("hidden");
+      addClassHidden('answerBlock');
+      addClassHidden('optionBlock');
     }
   }
   var setField = function() {
