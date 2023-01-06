@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
+  # SubjectsController
   class SubjectsController < Admin::ApplicationController
     before_action :set_admin_subject, only: %i[show edit update destroy]
 

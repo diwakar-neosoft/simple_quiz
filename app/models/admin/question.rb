@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
+  # Question.rb
   class Question < ApplicationRecord
     self.table_name = 'questions'
 
