@@ -21,7 +21,7 @@
     <%= form.select :inputType, input_type_options, :include_blank => 'Select Question Type', class: 'form-control' %>
   </div>
 
-  <div class='hidden' id='optionBlock'>
+  <div class='hidden' id='multipleChoiceOptionBlock'>
     <div class='form-group form-inline'>
       <%= form.label :option1, style: "display: block" %>
       <%= form.text_field 'optionKeys[0]', class: 'form-control' %>
@@ -47,6 +47,41 @@
     </div>
   </div>
 
+  <div class='hidden' id='listOptionBlock'>
+    <div class='form-group form-inline'>
+      <%= form.label :option1, style: "display: block" %>
+      <%= form.text_field 'listOptionKeys[0]', class: 'form-control' %>
+      <%= form.radio_button :answer, '1' %>
+    </div>
+
+    <div class='form-group form-inline'>
+      <%= form.label :option2, style: "display: block" %>
+      <%= form.text_field 'listOptionKeys[1]', class: 'form-control' %>
+      <%= form.radio_button :answer, '2' %>
+    </div>
+
+    <div class='form-group form-inline'>
+      <%= form.label :option3, style: "display: block" %>
+      <%= form.text_field 'listOptionKeys[2]', class: 'form-control' %>
+      <%= form.radio_button :answer, '3' %>
+    </div>
+
+    <div class='form-group form-inline'>
+      <%= form.label :option4, style: "display: block" %>
+      <%= form.text_field 'listOptionKeys[3]', class: 'form-control' %>
+      <%= form.radio_button :answer, '4' %>
+    </div>
+  </div>
+
+  <div class='hidden' id='trueFalseOptionBlock'>
+    <div class='form-group form-inline'>
+      <%= form.label :true,'True: ' %>
+      <%= form.radio_button :answer,'True' %>
+      <%= form.label :false, 'False: ' %>
+      <%= form.radio_button :answer,'False' %>
+    </div>
+  </div>
+
   <div class='form-group'>
     <%= form.label :subject_id, style: "display: block" %>
     <%= form.select :subject_id, all_subjects, class: 'form-control' %>
@@ -68,16 +103,24 @@ var place = {
     let removeClassHidden = (id) => $(`#${id}`).removeClass("hidden");
     let addClassHidden = (id) => $(`#${id}`).addClass("hidden");
     if (inputType === 'true/false'){
-      removeClassHidden('answerBlock')
-      addClassHidden('optionBlock');
+      addClassHidden('multipleChoiceOptionBlock');
+      addClassHidden('listOptionBlock');
+      removeClassHidden('trueFalseOptionBlock');
     }
-    else if (inputType === 'multipleChoice' || inputType === 'list'){
-      removeClassHidden('answerBlock')
-      removeClassHidden('optionBlock')
+    else if (inputType === 'multipleChoice'){
+      addClassHidden('trueFalseOptionBlock');
+      addClassHidden('listOptionBlock');
+      removeClassHidden('multipleChoiceOptionBlock');
+    }
+    else if (inputType === 'list'){
+      addClassHidden('trueFalseOptionBlock');
+      addClassHidden('multipleChoiceOptionBlock');
+      removeClassHidden('listOptionBlock');
     }
     else{
-      addClassHidden('answerBlock');
-      addClassHidden('optionBlock');
+      addClassHidden('multipleChoiceOptionBlock');
+      addClassHidden('trueFalseOptionBlock');
+      addClassHidden('listOptionBlock');
     }
   }
   var setField = function() {

@@ -39,7 +39,6 @@ module Admin
 
     # PATCH/PUT /admin/questions/1 or /admin/questions/1.json
     def update
-      byebug
       respond_to do |format|
         if @admin_question.update(admin_question_params)
           format.html { redirect_to admin_question_url(@admin_question), notice: 'Question was successfully updated.' }
@@ -72,14 +71,31 @@ module Admin
     def admin_question_params
       case params[:admin_question][:inputType]
       when 'true/false'
-        params.require(:admin_question).permit(:title, :inputType, :answer, :subject_id).with_defaults(option1: nil,
-                                                                                                       option2: nil, option3: nil, option4: nil)
-      when 'multipleChoice', 'list'
-        params.require(:admin_question).permit(:title, :inputType, :option1, :option2, :option3, :option4, :answer,
-                                               :subject_id)
+        params.require(:admin_question).permit(:title, :inputType, :answer,
+                                               :subject_id).with_defaults(optionValues: {})
+      when 'multipleChoice'
+        keys = params[:admin_question][:optionKeys].values
+        values = params[:admin_question][:isRight].values
+        optionValues = update_option_values(keys, values)
+        params.require(:admin_question).permit(:title, :inputType,
+                                               :subject_id).merge(optionValues: optionValues).with_defaults(answer: nil)
+      when 'list'
+        keys = params[:admin_question][:listOptionKeys].values
+        values = [false] * 4
+        answer = params[:admin_question][:answer].to_i
+        values[answer - 1] = true
+        optionValues = update_option_values(keys, values)
+        params.require(:admin_question).permit(:title, :inputType,
+                                               :subject_id).merge(optionValues: optionValues).with_defaults(answer: nil)
       else
-        params.require(:admin_question).permit(:title, :inputType, :subject_id).with_defaults(optionValues: {})
+        params.require(:admin_question).permit(:title, :inputType, :subject_id).with_defaults(optionValues: nil, answer: nil)
       end
+    end
+
+    def update_option_values(keys, values)
+      optionValues = {}
+      [0, 1, 2, 3].each { |index| optionValues[keys[index]] = values[index] }
+      optionValues
     end
   end
 end

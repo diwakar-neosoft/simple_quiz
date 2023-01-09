@@ -6,7 +6,7 @@ module Admin
     self.table_name = 'questions'
 
     enum :inputType, ['true/false', 'multipleChoice', 'list', 'descriptive']
-    store :optionValues, accessors: %i[option1 option2 option3 option4 answer], coder: JSON
+    store :optionValues, accessors: %i[option1 option2 option3 option4], coder: JSON
 
     belongs_to :subject
 
@@ -16,13 +16,10 @@ module Admin
     private
 
     def options_and_answer
-      if inputType == 'true/false' && %w[true false].exclude?(answer.downcase)
-        errors.add(:answer, ' should be either true or false')
-      elsif (inputType == 'multipleChoice' || inputType == 'list') && (answer.blank? || option1.blank? || option2.blank? || option3.blank? || option4.blank?)
+      if inputType == 'true/false' && !answer.present?
+        errors.add(:answer, ' should be present')
+      elsif (inputType == 'multipleChoice') && !(optionValues.keys.size == 4 && optionValues.values.include?('1'))
         errors.add(:all, 'field should be fill')
-      elsif (inputType == 'multipleChoice' || inputType == 'list') && [option1, option2, option3,
-                                                                       option4].exclude?(answer)
-        errors.add(:answer, 'must be one of option.')
       end
     end
   end

@@ -19,4 +19,15 @@
     <%= question.subject.name %>
   </p>
 
+  <p>
+    <strong>Answer:</strong>
+    <%= question.answer %>
+  </p>
+
+  <div>
+    <%= link_to "Edit this question", edit_admin_question_path(question) %> |
+    <%= link_to "Back", :back %>
+    <%= button_to "Destroy this question", question, method: :delete, class: 'btn btn-danger' %>
+  </div>
+
 </div>
