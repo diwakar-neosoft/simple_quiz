@@ -22,33 +22,31 @@
   </div>
 
   <div class='hidden' id='optionBlock'>
-    <div class='form-group'>
+    <div class='form-group form-inline'>
       <%= form.label :option1, style: "display: block" %>
-      <%= form.text_field :option1, class: 'form-control' %>
+      <%= form.text_field 'optionKeys[0]', class: 'form-control' %>
+      <%= form.check_box 'isRight[0]' %>
     </div>
 
-    <div class='form-group'>
+    <div class='form-group form-inline'>
       <%= form.label :option2, style: "display: block" %>
-      <%= form.text_field :option2, class: 'form-control' %>
+      <%= form.text_field 'optionKeys[1]', class: 'form-control' %>
+      <%= form.check_box 'isRight[1]' %>
     </div>
 
-    <div class='form-group'>
+    <div class='form-group form-inline'>
       <%= form.label :option3, style: "display: block" %>
-      <%= form.text_field :option3, class: 'form-control' %>
+      <%= form.text_field 'optionKeys[2]', class: 'form-control' %>
+      <%= form.check_box 'isRight[2]' %>
     </div>
 
-    <div class='form-group'>
+    <div class='form-group form-inline'>
       <%= form.label :option4, style: "display: block" %>
-      <%= form.text_field :option4, class: 'form-control' %>
+      <%= form.text_field 'optionKeys[3]', class: 'form-control' %>
+      <%= form.check_box 'isRight[3]' %>
     </div>
   </div>
 
-  <div class='hidden' id='answerBlock'>
-    <div class='form-group'>
-      <%= form.label :answer, style: "display: block" %>
-      <%= form.text_field :answer, class: 'form-control' %>
-    </div>
-  </div>
   <div class='form-group'>
     <%= form.label :subject_id, style: "display: block" %>
     <%= form.select :subject_id, all_subjects, class: 'form-control' %>

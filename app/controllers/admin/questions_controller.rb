@@ -23,6 +23,7 @@ module Admin
 
     # POST /admin/questions or /admin/questions.json
     def create
+      optionValues = params[:optionsKeys]
       @admin_question = Admin::Question.new(admin_question_params)
 
       respond_to do |format|
@@ -38,6 +39,7 @@ module Admin
 
     # PATCH/PUT /admin/questions/1 or /admin/questions/1.json
     def update
+      byebug
       respond_to do |format|
         if @admin_question.update(admin_question_params)
           format.html { redirect_to admin_question_url(@admin_question), notice: 'Question was successfully updated.' }
