@@ -1,4 +1,4 @@
-<div class='card col-6 my-3' id="<%= dom_id question %>">
+<div class='card col-5 mx-1 my-1' id="<%= dom_id question %>">
   <p>
     <strong>Title:</strong>
     <%= question.title %>
@@ -11,7 +11,7 @@
 
   <p>
     <strong>Optionvalues:</strong>
-    <%= question.optionValues %>
+    <%= question.optionValues.keys %>
   </p>
 
   <p>
@@ -24,10 +24,10 @@
     <%= question.answer %>
   </p>
 
-  <div>
-    <%= link_to "Edit this question", edit_admin_question_path(question) %> |
-    <%= link_to "Back", :back %>
-    <%= button_to "Destroy this question", question, method: :delete, class: 'btn btn-danger' %>
+  <div class='d-flex'>
+    <%= link_to "Edit this question", edit_admin_question_path(question), class: 'btn btn-link' %>
+    <%= link_to "Back", :back, class: 'btn btn-link' %>
+    <%= button_to "Destroy this question", question, method: :delete, class: 'btn btn-link' %>
   </div>
 
 </div>

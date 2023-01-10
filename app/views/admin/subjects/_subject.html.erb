@@ -1,8 +1,7 @@
 <div id="<%= dom_id subject %>">
-  <p>
-    <strong>Name:</strong>
-    <%= subject.name %>
-  </p>
+  <%= link_to subject do %>
+    <strong><%= subject.name %></strong>
+  <% end %>
 
   <p>
     <strong>Num of questions:</strong>

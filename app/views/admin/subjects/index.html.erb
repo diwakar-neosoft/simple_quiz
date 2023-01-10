@@ -1,16 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Subjects</h1>
-
+<div class="d-flex justify-content-between">
+  <div>
+    <h1>Subjects</h1>
+  </div>
+  <div>
+    <h1><%= link_to "New subject", new_admin_subject_path, class: 'btn btn-primary' %></h1>
+  </div>
+</div>
 <div id="admin_subjects">
   <div class='row'>
     <% @admin_subjects.each do |admin_subject| %>
-      <div class='col-4 card mx-2 my-2'>
+      <div class='col-3 card mx-2 my-2'>
         <%= render admin_subject %>
-        <%= link_to "Show this subject", admin_subject %>
       </div>
     <% end %>
   </div>
 </div>
-
-<%= link_to "New subject", new_admin_subject_path, class: 'btn btn-primary mt-2' %>
