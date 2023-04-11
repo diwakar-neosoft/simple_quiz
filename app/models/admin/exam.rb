@@ -3,6 +3,7 @@ module Admin
     self.table_name = 'exams'
 
     has_and_belongs_to_many :subjects
+    has_many :users
     
     validates :name, presence: true, uniqueness: true
     validate :should_have_one_subject

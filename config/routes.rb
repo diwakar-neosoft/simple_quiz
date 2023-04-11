@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'dashboard#index'
+  devise_for :users
   namespace :admin do
+    resources :users, only: [:index]
     resources :questions
-    resources :subjects
+    resources :subjects do
+      # get 'questions',on: :member
+    end
     resources :exams
   end
   get :admin, to: 'admin/subjects#index'
-  root 'admin/subjects#index'
 end

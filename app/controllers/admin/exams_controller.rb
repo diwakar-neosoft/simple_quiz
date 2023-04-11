@@ -5,23 +5,20 @@ module Admin
   class ExamsController < Admin::ApplicationController
     before_action :set_admin_exam, only: %i[show edit update destroy]
 
-    # GET /admin/exams or /admin/exams.json
     def index
       @admin_exams = Admin::Exam.all
     end
 
-    # GET /admin/exams/1 or /admin/exams/1.json
-    def show; end
+    def show
+      @questions = Admin::Question.joins(subject: :exams).where(exams: {id: params[:id]})
+    end
 
-    # GET /admin/exams/new
     def new
       @admin_exam = Admin::Exam.new
     end
 
-    # GET /admin/exams/1/edit
     def edit; end
 
-    # POST /admin/exams or /admin/exams.json
     def create
       @admin_exam = Admin::Exam.new(admin_exam_params)
 
@@ -36,7 +33,6 @@ module Admin
       end
     end
 
-    # PATCH/PUT /admin/exams/1 or /admin/exams/1.json
     def update
       respond_to do |format|
         if @admin_exam.update(admin_exam_params)
@@ -49,7 +45,6 @@ module Admin
       end
     end
 
-    # DELETE /admin/exams/1 or /admin/exams/1.json
     def destroy
       @admin_exam.destroy
 
@@ -61,12 +56,10 @@ module Admin
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_admin_exam
       @admin_exam = Admin::Exam.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def admin_exam_params
       params.require(:admin_exam).permit(:name, subject_ids: [])
     end

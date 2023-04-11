@@ -23,6 +23,11 @@ module Admin
     # GET /admin/subjects/1/edit
     def edit; end
 
+    # def questions
+    #   @subject = Subject.find(params[:id])
+    #   render json: { questions: @subject.questions } 
+    # end
+
     # POST /admin/subjects or /admin/subjects.json
     def create
       @admin_subject = Admin::Subject.new(admin_subject_params)

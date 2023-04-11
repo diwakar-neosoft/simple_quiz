@@ -1,2 +1,6 @@
-<%= render @admin_exams %>
+<div class='row'>
+	<% @admin_exams.each do |admin_exam| %>
+	  <%= render admin_exam %>
+	<% end %>
+</div>
 <%= link_to 'New Exam', new_admin_exam_path, class: 'btn btn-primary' %>

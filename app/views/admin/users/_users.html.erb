@@ -1,0 +1,44 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Email</th>
+			<th>CreatedAt</th>
+			<th>Assign</th>
+			<th>TestTaken</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% users.each do |user| %>
+			<tr>
+				<td>
+					<%= user.id %>
+				</td>
+				<td>
+					<%= user.email %>
+				</td>
+				<td>
+					<%= user.created_at %>
+				</td>
+				<td>
+					<select name='exam' id='exam'>
+						<%= @exam_ids.each do |e| %>
+							<option value=<%= e[0] %>><%= e[1] %></option>
+						<% end %>
+					</select>
+				</td>
+				<td>
+					<%= user.test_taken %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<script>
+	$(document).ready(function(){
+		$('exam').on('change', function(){
+			const exam_id = $(this).val();
+		})
+	})
+</script>
