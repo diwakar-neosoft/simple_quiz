@@ -1,3 +1,4 @@
 <%= render @admin_exam %>
-<%= link_to "Edit this exam", edit_admin_exam_path(@admin_exam) %> |
-<%= button_to 'Delete', @admin_exam, method: :delete, class: 'btn btn-link'%>
+<%= link_to "back to exams", admin_exams_path, class: 'btn btn-link' %> |
+<%= link_to "Edit this exam", edit_admin_exam_path(@admin_exam), class: 'btn btn-link' %> |
+<%= button_to 'Delete Exam', @admin_exam, method: :delete, class: 'btn btn-link'%>

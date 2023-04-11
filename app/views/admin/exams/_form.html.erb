@@ -15,7 +15,9 @@
     <%= form.label :name, 'Name: ', style: "display: block" %>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
-
+  <div>
+    <%= form.collection_check_boxes :subject_ids, Admin::Subject.all, :id, :name, { hide_label: true } %>
+  </div>
   <div>
     <%= form.submit class:'btn btn-success' %>
   </div>

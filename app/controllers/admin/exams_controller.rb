@@ -68,7 +68,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def admin_exam_params
-      params.require(:admin_exam).permit(:name)
+      params.require(:admin_exam).permit(:name, subject_ids: [])
     end
   end
 end
