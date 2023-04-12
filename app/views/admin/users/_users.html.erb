@@ -3,42 +3,30 @@
 		<tr>
 			<th>Id</th>
 			<th>Email</th>
-			<th>CreatedAt</th>
-			<th>Assign</th>
-			<th>TestTaken</th>
+			<th>Assigned</th>
+			<th>Appear</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% users.each do |user| %>
-			<tr>
-				<td>
-					<%= user.id %>
-				</td>
-				<td>
-					<%= user.email %>
-				</td>
-				<td>
-					<%= user.created_at %>
-				</td>
-				<td>
-					<select name='exam' id='exam'>
-						<%= @exam_ids.each do |e| %>
-							<option value=<%= e[0] %>><%= e[1] %></option>
+		<% users.each do |admin_user| %>
+				<tr>
+					<td>
+						<%= link_to edit_admin_user_path(admin_user) do %>
+							<%= admin_user.id %>
 						<% end %>
-					</select>
-				</td>
-				<td>
-					<%= user.test_taken %>
-				</td>
-			</tr>
+					</td>
+					<td>
+						<%= link_to edit_admin_user_path(admin_user) do %>
+							<%= admin_user.email %>
+						<% end %>
+					</td>
+					<td>
+						<%= admin_user.exam&.name %>
+					</td>
+					<td>
+						<%= admin_user.appear %>
+					</td>
+				</tr>
 		<% end %>
 	</tbody>
 </table>
-
-<script>
-	$(document).ready(function(){
-		$('exam').on('change', function(){
-			const exam_id = $(this).val();
-		})
-	})
-</script>

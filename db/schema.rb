@@ -56,8 +56,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_132927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
-    t.boolean "test_taken", default: false
+    t.boolean "test_assigned", default: false
+    t.boolean "appear", default: false
+    t.bigint "exam_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["exam_id"], name: "index_users_on_exam_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

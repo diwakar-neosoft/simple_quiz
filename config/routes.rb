@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   devise_for :users
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users
     resources :questions
     resources :subjects do
       # get 'questions',on: :member
