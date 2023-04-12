@@ -1,33 +1,35 @@
-<div class='card col-5 mx-1 my-1' id="<%= dom_id question %>">
-  <p>
-    <strong>Title:</strong>
-    <%= question.title %>
-  </p>
+<div class='card col-5 mx-4 my-4' id="<%= dom_id question %>">
+  <div class="mx-3">
+    <p>
+      <strong>Title:</strong>
+      <%= question.title %>
+    </p>
 
-  <p>
-    <strong>InputType:</strong>
-    <%= question.inputType %>
-  </p>
+    <p>
+      <strong>InputType:</strong>
+      <%= question.inputType %>
+    </p>
 
-  <p>
-    <strong>Optionvalues:</strong>
-    <%= question.optionValues.keys %>
-  </p>
+    <p>
+      <strong>Optionvalues:</strong>
+      <%= question.optionValues.keys %>
+    </p>
 
-  <p>
-    <strong>Subject:</strong>
-    <%= question.subject.name %>
-  </p>
+    <p>
+      <strong>Subject:</strong>
+      <%= question.subject.name %>
+    </p>
 
-  <p>
-    <strong>Answer:</strong>
-    <%= question.answer %>
-  </p>
+    <p>
+      <strong>Answer:</strong>
+      <%= question.answer %>
+    </p>
+  </div>
 
   <div class='d-flex'>
-    <%= link_to "Edit this question", edit_admin_question_path(question), class: 'btn btn-link' %>
+    <%= link_to "Edit", edit_admin_question_path(question), class: 'btn btn-link' %>
     <%= link_to "Back", :back, class: 'btn btn-link' %>
-    <%= button_to "Destroy this question", question, method: :delete, class: 'btn btn-link' %>
+    <%= button_to "Destroy", question, method: :delete, class: 'btn btn-link' %>
   </div>
 
 </div>

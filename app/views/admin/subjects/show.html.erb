@@ -2,10 +2,9 @@
 
 <%= render 'subject_questions',questions: @admin_questions %>
 
-<div>
-  <%= link_to "Edit this subject", edit_admin_subject_path(@admin_subject) %> |
-  <%= link_to "Back to subjects", admin_subjects_path %> |
-  <%= link_to "Add Question", new_admin_question_path %>
-
-  <%= button_to "Destroy this subject", @admin_subject, method: :delete, class: 'btn btn-link mt-3' %>
+<div class="d-flex">
+  <%= link_to "Edit", edit_admin_subject_path(@admin_subject), class: 'btn btn-link' %>
+  <%= link_to "Back", admin_subjects_path, class: 'btn btn-link' %>
+  <%= link_to "Add Question", new_admin_question_path, class: 'btn btn-link' %>
+  <%= button_to "Destroy", @admin_subject, method: :delete, class: 'btn btn-link py-2 px-3', id: 'button_css' %>
 </div>

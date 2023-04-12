@@ -1,7 +1,10 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Questions</h1>
-
+<div class="d-flex justify-content-between">
+  <div class="h2">Questions</div>
+  <div>
+    <%= link_to "New", new_admin_question_path, class: 'btn btn-primary mt-2' %>
+  </div>  
+</div>
 <div id="admin_questions">
   <div class='row'>
     <% @admin_questions.each do |admin_question| %>
@@ -10,4 +13,3 @@
   </div>
 </div>
 
-<%= link_to "New question", new_admin_question_path, class: 'btn btn-primary mt-2' %>

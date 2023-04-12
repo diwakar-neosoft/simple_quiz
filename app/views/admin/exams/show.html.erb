@@ -6,12 +6,14 @@
 
 <div id="subject_questions" class="table mx-3">
 	<h4>Questions : </h4>
-	<% @questions.each do |question| %>
-		<%= render 'admin/questions/question',question: question %>
-	<% end %>
+	<div class="row">
+		<% @questions.each do |question| %>
+			<%= render 'admin/questions/question',question: question %>
+		<% end %>
+	</div>
 </div>
 <div class="d-flex">
-	<%= link_to "back", admin_exams_path, class: 'btn btn-md btn-link' %>
+	<%= link_to "Back", admin_exams_path, class: 'btn btn-md btn-link' %>
 	<%= link_to "Edit", edit_admin_exam_path(@admin_exam), class: 'btn btn-md btn-link' %>
 	<%= button_to 'Delete', @admin_exam, method: :delete, class: 'btn btn-md btn-link' %>
 </div>
