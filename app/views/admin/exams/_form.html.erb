@@ -11,12 +11,17 @@
     </div>
   <% end %>
 
-  <div class='form-group'>
-    <%= form.label :name, 'Name: ', style: "display: block" %>
-    <%= form.text_field :name, class: 'form-control' %>
+  <div class='form-group row'>
+    <%= form.label :name, 'Name: ', class: 'col-sm-2 col-form-label' %>
+    <div class='col-sm-4'>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= form.collection_check_boxes :subject_ids, Admin::Subject.all, :id, :name, { hide_label: true } %>
+  <div class='form-group row'>
+    <%= form.label :subjects,'Subjects: ', class: 'col-sm-2 col-form-label' %>
+    <div class='col-sm-6'>
+      <%= form.collection_check_boxes :subject_ids, Admin::Subject.all, :id, :name, {hide_label: true } %>
+    </div>
   </div>
   <div>
     <%= form.submit class:'btn btn-success' %>
