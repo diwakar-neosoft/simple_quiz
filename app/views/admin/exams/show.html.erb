@@ -1,44 +1,49 @@
 <%= render @admin_exam %>
-<%#= form_with html: {class: 'my-5 mx-2'} do |form| %>
-  <%#= form.label :subject_name, 'Questions: ' %>
-  <%#= form.select :subject_name, subject_names, include_blank: true %>
-<%# end %>
+<% @questions.each do |question| %>
+	<div class="container mt-3">
+    <div class="card">
+      <div class="card-body">
+        <!-- <h4 class="card-title"><%#= question.subject.name %></h4> -->
+        <p class="card-text"><%= question.title %></p>
+        <% if question.inputType == 'list' %>
+        	<% question.optionValues.keys.each do |option| %>
+        		<div class="form-check">
+		          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
+		          <label class="form-check-label" for="option1">
+		            <%= option %>
+		          </label>
+		        </div>
+        	<% end %>
+        <% elsif question.inputType == 'multipleChoice' %>
+        	<% question.optionValues.keys.each do |option| %>
+        		<div class="form-check">
+		          <input class="form-check-input" type="checkbox" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
+		          <label class="form-check-label" for="option1">
+		            <%= option %>
+		          </label>
+		        </div>
+        	<% end %>
+        <% elsif question.inputType == 'true/false' %>
+        	<div class="form-check">
+	          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
+		          <label class="form-check-label" for="option1">
+		            True
+		          </label>
+	        </div>
+	        <div class="form-check">
+	          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
+		          <label class="form-check-label" for="option1">
+		            False
+		          </label>
+	        </div>
+        <% end %>
+      </div>
+    </div>
+ 	</div>
+<% end %>
 
-<div id="subject_questions" class="table mx-3">
-	<h4>Questions : </h4>
-	<div class="row">
-		<% @questions.each do |question| %>
-			<%= render 'admin/questions/question',question: question %>
-		<% end %>
-	</div>
-</div>
 <div class="d-flex">
 	<%= link_to "Back", admin_exams_path, class: 'btn btn-md btn-link' %>
 	<%= link_to "Edit", edit_admin_exam_path(@admin_exam), class: 'btn btn-md btn-link' %>
 	<%= button_to 'Delete', @admin_exam, method: :delete, class: 'btn btn-md btn-link' %>
 </div>
-
-<script>
-	$(document).ready(function(){
-		$('#subject_name').on('change', function() {
-			const subject_id = $(this).val();
-			$.ajax({
-				url: `/admin/subjects/${subject_id}/questions`,
-				type: 'GET',
-				dataType: 'json',
-				success: function(data) {
-					const questions = $('#subject_questions tbody');
-					questions.empty();
-					$.each(data.questions, function(index, question) {
-						const title = $('<td>').text(question.title);
-						const inputType = $('<td>').text(question.inputType);
-						const options = $('<td>').text(question.optionValues.keys);
-						const answer = $('<td>').text(question.answer);
-						const questionRow = $('<tr>').append(title, inputType, options, answer)
-						questions.append(questionRow);
-					});
-				}
-			});
-		});
-	});
-</script>

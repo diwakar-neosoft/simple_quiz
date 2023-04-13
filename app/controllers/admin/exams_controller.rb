@@ -10,7 +10,7 @@ module Admin
     end
 
     def show
-      @questions = Admin::Question.joins(subject: :exams).where(exams: {id: params[:id]})
+      @questions = Admin::Question.joins(subject: :exams).where(exams: {id: params[:id]}).order(:id)
     end
 
     def new
