@@ -71,31 +71,17 @@ module Admin
     def admin_question_params
       case params[:admin_question][:inputType]
       when 'true/false'
-        params.require(:admin_question).permit(:title, :inputType, :answer,
-                                               :subject_id).with_defaults(optionValues: {})
+        params.require(:admin_question).permit(:title, :inputType,
+                                               :subject_id).with_defaults(option1: true, option2: false)
       when 'multipleChoice'
-        keys = params[:admin_question][:optionKeys].values
-        values = params[:admin_question][:isRight].values
-        optionValues = update_option_values(keys, values)
-        params.require(:admin_question).permit(:title, :inputType,
-                                               :subject_id).merge(optionValues: optionValues).with_defaults(answer: nil)
+        params.require(:admin_question).permit(:title, :inputType,:subject_id, :option1, :option2, :option3, :option4)
       when 'list'
-        keys = params[:admin_question][:listOptionKeys].values
-        values = [false] * 4
-        answer = params[:admin_question][:answer].to_i
-        values[answer - 1] = true
-        optionValues = update_option_values(keys, values)
-        params.require(:admin_question).permit(:title, :inputType,
-                                               :subject_id).merge(optionValues: optionValues).with_defaults(answer: nil)
+        params.require(:admin_question).permit(:title, :inputType,:subject_id, :option1, :option2, :option3, :option4)
       else
-        params.require(:admin_question).permit(:title, :inputType, :subject_id).with_defaults(optionValues: nil, answer: nil)
+        params.require(:admin_question).permit(:title, :inputType, :subject_id)
       end
     end
 
-    def update_option_values(keys, values)
-      optionValues = {}
-      [0, 1, 2, 3].each { |index| optionValues[keys[index]] = values[index] }
-      optionValues
-    end
+
   end
 end

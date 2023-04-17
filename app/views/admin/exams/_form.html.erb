@@ -1,4 +1,4 @@
-<%= form_with(model: admin_exam) do |form| %>
+<%= form_with(model: admin_exam, html: {class: 'mx-auto mb-4', style: 'max-width: 450px;'}) do |form| %>
   <% if admin_exam.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_exam.errors.count, "error") %> prohibited this Exam from being saved:</h2>
@@ -12,18 +12,18 @@
   <% end %>
 
   <div class='form-group row'>
-    <%= form.label :name, 'Name: ', class: 'col-sm-2 col-form-label' %>
-    <div class='col-sm-4'>
+    <%= form.label :name, 'Name ', class: 'col-2' %>
+    <div class='col-10'>
       <%= form.text_field :name, class: 'form-control' %>
     </div>
   </div>
   <div class='form-group row'>
-    <%= form.label :subjects,'Subjects: ', class: 'col-sm-2 col-form-label' %>
-    <div class='col-sm-6'>
+    <%= form.label :subjects,'Subjects ', class: 'col-2' %>
+    <div class='col-10'>
       <%= form.collection_check_boxes :subject_ids, Admin::Subject.all, :id, :name, {hide_label: true } %>
     </div>
   </div>
-  <div>
-    <%= form.submit class:'btn btn-success' %>
+  <div class='row'>
+    <%= form.submit class:'btn btn-primary col-12' %>
   </div>
 <% end %>

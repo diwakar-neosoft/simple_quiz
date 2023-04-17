@@ -8,6 +8,10 @@ module Admin
     validates :name, presence: true, uniqueness: true
     validate :should_have_one_subject
 
+    def subject_names
+      subjects.joins(:questions).distinct.pluck(:name).join(', ')
+    end
+
     private
     
     def should_have_one_subject

@@ -1,4 +1,4 @@
-<%= form_with(model: admin_question) do |form| %>
+<%= form_with(model: admin_question, html: {class: 'mx-auto', style: 'max-width: 450px;'}) do |form| %>
   <% if admin_question.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,122 +11,62 @@
     </div>
   <% end %>
 
-  <div class='form-group row'>
-    <%= form.label :title, 'Title: ', class: 'col-sm-2 col-form-label' %>
-    <div class="col-sm-6">
-      <%= form.text_area :title, class: 'form-control col-6 ' %>
+  <div class='row form-label-group mb-4'>
+    <%= form.label :title, 'Title ',class: 'col-2' %>
+    <div class='col-10'>
+      <%= form.text_field :title, class: 'form-control' %>
     </div>
   </div>
 
-  <div class='form-group row'>
-    <%= form.label :inputType, 'Input Type: ', class: 'col-sm-2 col-form-label' %>
-    <div class="col-sm-3">
-      <%= form.select :inputType, input_type_options, {}, :include_blank => 'Select Question Type', class: 'form-control col-4' %>
+  <div class='row form-label-group mb-4'>
+    <%= form.label :inputType, 'Input Type ',class: 'col-2' %>
+    <div class='col-10'>
+      <%= form.select :inputType, input_type_options, {}, :include_blank => 'Select Question Type', class: 'form-control' %>
     </div>
   </div>
 
-  <div class='hidden' id='multipleChoiceOptionBlock'>
-    <div class='form-group row'>
-      <%= form.label :option1, class: 'col-sm-2 col-form-label' %>
-      <div class="col-sm-4">
-        <%= form.text_field 'optionKeys[0]', class: 'form-control col-4' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.check_box 'isRight[0]', class: 'form-check-label' %>
+  <div class='hidden' id='optionBlock'>
+    <div class='form-group mb-3 row'>
+      <%= form.label :option1, 'option1 ',class: 'col-2' %>
+      <div class='col-10'>
+        <%= form.text_field :option1, class: 'form-control' %>
       </div>
     </div>
 
-    <div class='form-group row'>
-      <%= form.label :option2, class: 'col-sm-2 col-form-label' %>
-      <div class="col-sm-4">
-        <%= form.text_field 'optionKeys[1]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.check_box 'isRight[1]',class: 'form-check-label' %>
+    <div class='form-group mb-3 row'>
+      <%= form.label :option2, 'option2 ',class: 'col-2' %>
+      <div class='col-10'>
+        <%= form.text_field :option2, class: 'form-control' %>
       </div>
     </div>
 
-    <div class='form-group row'>
-      <%= form.label :option3, class: 'col-sm-2' %>
-      <div class="col-sm-4">
-        <%= form.text_field 'optionKeys[2]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.check_box 'isRight[2]',class: 'form-check-label' %>
+    <div class='form-group mb-3 row'>
+      <%= form.label :option3, 'option3 ',class: 'col-2' %>
+      <div class='col-10'>
+        <%= form.text_field :option3, class: 'form-control' %>
       </div>
     </div>
 
-    <div class='form-group row'>
-      <%= form.label :option4, class: 'col-sm-2' %>
-      <div class="col-sm-4">
-        <%= form.text_field 'optionKeys[3]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.check_box 'isRight[3]', class: 'form-check-label' %>
+    <div class='form-group mb-3 row'>
+      <%= form.label :option4, 'option4 ',class: 'col-2' %>
+      <div class='col-10'>
+        <%= form.text_field :option4, class: 'form-control' %>
       </div>
     </div>
   </div>
 
-  <div class='hidden' id='listOptionBlock'>
-    <div class='form-group row'>
-      <%= form.label :option1, class: 'col-sm-2' %>
-      <div class="col-sm-3">
-        <%= form.text_field 'listOptionKeys[0]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.radio_button :answer, '1',class: 'form-check-label' %>
-      </div>
-    </div>
-
-    <div class='form-group row'>
-      <%= form.label :option2, class: 'col-sm-2' %>
-      <div class="col-sm-3">
-        <%= form.text_field 'listOptionKeys[1]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.radio_button :answer, '2',class: 'form-check-label' %>
-      </div>
-    </div>
-
-    <div class='form-group row'>
-      <%= form.label :option3, class: 'col-sm-2' %>
-      <div class="col-sm-3">
-        <%= form.text_field 'listOptionKeys[2]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.radio_button :answer, '3',class: 'form-check-label' %>
-      </div>
-    </div>
-
-    <div class='form-group row'>
-      <%= form.label :option4, class: 'col-sm-2' %>
-      <div class="col-sm-3">
-        <%= form.text_field 'listOptionKeys[3]', class: 'form-control' %>
-      </div>
-      <div class="col-sm-1">
-        <%= form.radio_button :answer, '4', class: 'form-check-label' %>
-      </div>
-    </div>
-  </div>
-
-  <div class='hidden' id='trueFalseOptionBlock'>
-    <div class='form-group form-inline'>
-      <%= form.label :true,'True: ' %>
-      <%= form.radio_button :answer,'True' %>
-      <%= form.label :false, 'False: ' %>
-      <%= form.radio_button :answer,'False' %>
-    </div>
-  </div>
-
-  <div class='form-group row'>
-    <%= form.label :subject_id,'SubjectId', class: 'col-sm-2' %>
-    <div class="col-sm-3">
+  
+  <div class='form-group mb-3 row'>
+    <%= form.label :subject_id,'SubjectId ',class: 'col-2' %>
+    <div class='col-10'>
       <%= form.select :subject_id, all_subjects, {}, class: 'form-control' %>
     </div>
   </div>
 
-  <div class='form-group'>
-    <%= form.submit 'Submit',class: 'btn btn-success' %>
+  <div class='form-group mt-5 row'>
+    <div class='col-12'>
+      <%= form.submit 'Submit',class: 'btn btn-primary btn-block' %>
+    </div>
   </div>
 <% end %>
 
@@ -140,25 +80,12 @@ var place = {
     $('#admin_question_answer').attr("placeholder", place[inputType]);
     let removeClassHidden = (id) => $(`#${id}`).removeClass("hidden");
     let addClassHidden = (id) => $(`#${id}`).addClass("hidden");
-    if (inputType === 'true/false'){
-      addClassHidden('multipleChoiceOptionBlock');
-      addClassHidden('listOptionBlock');
-      removeClassHidden('trueFalseOptionBlock');
-    }
-    else if (inputType === 'multipleChoice'){
-      addClassHidden('trueFalseOptionBlock');
-      addClassHidden('listOptionBlock');
-      removeClassHidden('multipleChoiceOptionBlock');
-    }
-    else if (inputType === 'list'){
-      addClassHidden('trueFalseOptionBlock');
-      addClassHidden('multipleChoiceOptionBlock');
-      removeClassHidden('listOptionBlock');
+
+    if (inputType === 'multipleChoice' || inputType === 'list'){
+      removeClassHidden('optionBlock');
     }
     else{
-      addClassHidden('multipleChoiceOptionBlock');
-      addClassHidden('trueFalseOptionBlock');
-      addClassHidden('listOptionBlock');
+      addClassHidden('optionBlock');
     }
   }
   var setField = function() {

@@ -14,8 +14,7 @@
       <tr>
         <td><%= question.title %></td>
         <td><%= question.inputType %></td>
-        <td><%= question.optionValues.keys %></td>
-        <td><%= question.answer %></td>
+        <td><%= question.optionValues.values %></td>
         <td><%= link_to 'show',question, class: 'btn btn-primary' %></td>
       </tr>
     </tbody>

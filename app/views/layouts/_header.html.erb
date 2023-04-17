@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to 'Home',root_path,class: 'navbar-brand' %>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <% if !!current_user %>
-          <%= button_to 'Logout',destroy_user_session_path,method: :delete, data: { :no_turbolink => true }, class: 'btn btn-lg btn-danger' %>
-        <% else %>
-          <%= link_to 'LogIn', new_user_session_path,class: "btn btn-link" %> 
-        <% end %>
-      </li>
-    </ul>
+  <div class='container'>
+    <%= link_to 'Home',root_path,class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <% if !!current_user %>
+            <%= button_to 'Logout',destroy_user_session_path,method: :delete, data: { :no_turbolink => true }, class: 'btn btn-lg btn-danger' %>
+          <% else %>
+            <%= link_to 'LogIn', new_user_session_path,class: "btn btn-link" %> 
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

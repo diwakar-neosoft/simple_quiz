@@ -1,22 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to 'Home',admin_path,class: 'navbar-brand' %>
-  <div class="collapse navbar-collapse row" id="navbarNav">
-    <ul class="navbar-nav col-10">
-      <li class="nav-item active">
-        <%= link_to 'Subject',admin_subjects_path,class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Questions',admin_questions_path,class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Exams',admin_exams_path,class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Users',admin_users_path,class: 'nav-link' %>
-      </li>
-    </ul>
-    <ul class="navbar-nav mt-3 col-2">
-      <%= button_to 'Logout',destroy_user_session_path,method: :delete, data: { :no_turbolink => true }, class: 'btn btn-danger nav-link' %>
-    </ul>
+  <div class='container'>
+    <%= link_to 'Home',admin_path,class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse row" id="navbarNav">
+      <ul class="navbar-nav col-11">
+        <li class="nav-item active">
+          <%= link_to 'Subject',admin_subjects_path,class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Questions',admin_questions_path,class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Exams',admin_exams_path,class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Users',admin_users_path,class: 'nav-link' %>
+        </li>
+      </ul>
+      <ul class="navbar-nav mt-3 col-1">
+        <%= button_to 'Logout',destroy_user_session_path,method: :delete, data: { :no_turbolink => true }, class: 'btn btn-danger nav-link' %>
+      </ul>
+    </div>
   </div>
 </nav>

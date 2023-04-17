@@ -1,12 +1,20 @@
-<%= render @admin_exam %>
+<div class='container'>
+  <div class="h3 d-flex justify-content-center">
+     Exam: <%= @admin_exam.name %>
+  </div>
+  <div class="h4 d-flex justify-content-center">
+     Subjects: <%= @admin_exam.subject_names %>
+  </div>
+</div>
+<% quesiton_no = 0 %>
 <% @questions.each do |question| %>
-	<div class="container mt-3">
+	<div class="col-7 mt-3">
     <div class="card">
       <div class="card-body">
-        <!-- <h4 class="card-title"><%#= question.subject.name %></h4> -->
-        <p class="card-text"><%= question.title %></p>
-        <% if question.inputType == 'list' %>
-        	<% question.optionValues.keys.each do |option| %>
+      	<% quesiton_no += 1 %>
+        <p class="card-text"><span class='h5'><%= quesiton_no.to_s + ': ' %></span><%= question.title %></p>
+        <% if question.inputType == 'list' || question.inputType == 'true/false' %>
+        	<% question.optionValues.values.each do |option| %>
         		<div class="form-check">
 		          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
 		          <label class="form-check-label" for="option1">
@@ -15,7 +23,7 @@
 		        </div>
         	<% end %>
         <% elsif question.inputType == 'multipleChoice' %>
-        	<% question.optionValues.keys.each do |option| %>
+        	<% question.optionValues.values.each do |option| %>
         		<div class="form-check">
 		          <input class="form-check-input" type="checkbox" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
 		          <label class="form-check-label" for="option1">
@@ -23,19 +31,6 @@
 		          </label>
 		        </div>
         	<% end %>
-        <% elsif question.inputType == 'true/false' %>
-        	<div class="form-check">
-	          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
-		          <label class="form-check-label" for="option1">
-		            True
-		          </label>
-	        </div>
-	        <div class="form-check">
-	          <input class="form-check-input" type="radio" name="<%= question.id %>" id="<%= question.id %>" value="<%= question.id %>">
-		          <label class="form-check-label" for="option1">
-		            False
-		          </label>
-	        </div>
         <% end %>
       </div>
     </div>
