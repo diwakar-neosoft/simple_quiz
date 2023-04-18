@@ -12,14 +12,14 @@
   <% end %>
 
   <div class='row form-label-group mb-4'>
-    <%= form.label :title, 'Title ',class: 'col-2' %>
+    <%= form.label :title, 'Title: ',class: 'col-2' %>
     <div class='col-10'>
       <%= form.text_field :title, class: 'form-control' %>
     </div>
   </div>
 
   <div class='row form-label-group mb-4'>
-    <%= form.label :inputType, 'Input Type ',class: 'col-2' %>
+    <%= form.label :inputType, 'Input Type: ',class: 'col-2' %>
     <div class='col-10'>
       <%= form.select :inputType, input_type_options, {}, :include_blank => 'Select Question Type', class: 'form-control' %>
     </div>
@@ -27,28 +27,28 @@
 
   <div class='hidden' id='optionBlock'>
     <div class='form-group mb-3 row'>
-      <%= form.label :option1, 'option1 ',class: 'col-2' %>
+      <%= form.label :option1, 'option1: ',class: 'col-2' %>
       <div class='col-10'>
         <%= form.text_field :option1, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group mb-3 row'>
-      <%= form.label :option2, 'option2 ',class: 'col-2' %>
+      <%= form.label :option2, 'option2: ',class: 'col-2' %>
       <div class='col-10'>
         <%= form.text_field :option2, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group mb-3 row'>
-      <%= form.label :option3, 'option3 ',class: 'col-2' %>
+      <%= form.label :option3, 'option3: ',class: 'col-2' %>
       <div class='col-10'>
         <%= form.text_field :option3, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group mb-3 row'>
-      <%= form.label :option4, 'option4 ',class: 'col-2' %>
+      <%= form.label :option4, 'option4: ',class: 'col-2' %>
       <div class='col-10'>
         <%= form.text_field :option4, class: 'form-control' %>
       </div>
@@ -57,7 +57,7 @@
 
   
   <div class='form-group mb-3 row'>
-    <%= form.label :subject_id,'SubjectId ',class: 'col-2' %>
+    <%= form.label :subject_id,'SubjectId: ',class: 'col-2' %>
     <div class='col-10'>
       <%= form.select :subject_id, all_subjects, {}, class: 'form-control' %>
     </div>

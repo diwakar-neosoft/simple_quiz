@@ -1,0 +1,35 @@
+<p style="color: green"><%= alert %></p>
+<div class="h3 d-flex justify-content-center">
+     Exam: <%= current_user.exam.name %>
+  </div>
+  <div class="h4 d-flex justify-content-center">
+     Subjects: <%= current_user.exam.subject_names %>
+  </div>
+<%= form_with model: @exam_submission, html: {class: 'mx-auto', style: 'max-width: 500px;'} do |form| %>
+	<% @questions.each do |question| %>
+		<div class='card my-5'>
+			<div class='card-body'>
+				<h5 class="card-title"><%= question.title %></h5>
+				<%= form.fields_for :exam_submission_answers do |answer_form| %>
+					<%= answer_form.hidden_field :subject_id, value: question.subject_id, class: 'form-control' %>
+					<%= answer_form.hidden_field :question_id, value: question.id, class: 'form-control' %>
+					<% if question.inputType == 'descriptive' %>
+						<%= answer_form.text_field :answer, class: 'form-control' %>
+					<% elsif ( question.inputType == 'list' ) || ( question.inputType == 'true/false' ) %>
+						<%= answer_form.select :answer, question.optionValues.values, {}, class: 'form-control' %>
+					<% else %>
+						<% question.optionValues.values.uniq.each do |option| %>
+							<div class=''>
+								<%= answer_form.check_box :answer, { multiple: true }, option, class: 'form-check-input' %>
+								<%= answer_form.label :answers, option, class: 'form-check-label' %>
+							</div>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	<div class="text-center row mb-5">
+		<%= form.submit 'Submit',class: 'btn btn-primary col-12' %>
+	</div>
+<% end %>

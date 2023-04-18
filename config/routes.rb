@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     resources :exams
   end
   get :admin, to: 'admin/subjects#index'
+
+  resources :exam_submissions, only: [ :new, :create ]
+  # resources :exam_submission_answers, only: [ :create ]
 end

@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_17_103915) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_112647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exam_submission_answers", force: :cascade do |t|
+    t.bigint "subject_id", null: false
+    t.bigint "question_id", null: false
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "exam_submission_id", null: false
+    t.index ["exam_submission_id"], name: "index_exam_submission_answers_on_exam_submission_id"
+    t.index ["question_id"], name: "index_exam_submission_answers_on_question_id"
+    t.index ["subject_id"], name: "index_exam_submission_answers_on_subject_id"
+  end
+
+  create_table "exam_submissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "exam_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_exam_submissions_on_exam_id"
+    t.index ["user_id"], name: "index_exam_submissions_on_user_id"
+  end
 
   create_table "exams", force: :cascade do |t|
     t.string "name"
@@ -55,7 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_103915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
-    t.boolean "test_assigned", default: false
     t.boolean "appear", default: false
     t.bigint "exam_id"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -63,6 +83,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_103915) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exam_submission_answers", "exam_submissions"
+  add_foreign_key "exam_submission_answers", "questions"
+  add_foreign_key "exam_submission_answers", "subjects"
+  add_foreign_key "exam_submissions", "exams"
+  add_foreign_key "exam_submissions", "users"
   add_foreign_key "exams_subjects", "exams"
   add_foreign_key "exams_subjects", "subjects"
   add_foreign_key "questions", "subjects"

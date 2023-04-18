@@ -4,6 +4,7 @@ module Admin
 
     has_and_belongs_to_many :subjects
     has_many :users
+    has_many :exam_submissions, dependent: :destroy
     
     validates :name, presence: true, uniqueness: true
     validate :should_have_one_subject
